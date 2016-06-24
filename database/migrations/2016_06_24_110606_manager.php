@@ -13,9 +13,10 @@ class Manager extends Migration
     public function up()
     {
         //
-        Schaema::create('manager', function(Blueprint $table){
-            $table->foreign('emp_id');
-            $table->increments('cashier_id')->primary();
+        Schema::create('manager', function(Blueprint $table){
+            $table->integer('emp_id')->unsigned();
+            $table->foreign('emp_id')->references('id')->on('employee')->onCreate('cascade')->onUpdate('cascade');
+            $table->increments('manager_id');
         });
     }
 

@@ -14,15 +14,15 @@ class Employee extends Migration
     {
         // Table for employee
         Schema::create('employee', function(Blueprint $emp){
-            $emp->increments('id')->unique()->primary();
-            $emp->string('firstName')->notNull();
-            $emp->string('middleName');
-            $emp->string('lastName')->notNull();
-            $emp->date('dateJoined')->notNull();
-            $emp->strin('email');
-            $emp->string('mobileNumber');
-            $emp->string('address');
-            $emp->date('dob');
+            $emp->increments('id');
+            $emp->string('first_name');
+            $emp->string('middle_name');
+            $emp->string('last_name');
+            $emp->date('date_joined');
+            $emp->string('email')->nullable();
+            $emp->string('contact_number',15);
+            $emp->string('address')->nullable();
+            $emp->date('dob')->nullable();
             $emp->string('sex');
             $emp->string('position');
             $emp->string('salary');

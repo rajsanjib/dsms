@@ -2,11 +2,13 @@
 
 ### Built with Laravel ORM
 
+* Create a database named dsms
+* Enter your database info in config/database.php and .env files
 
 Create Schema for each table and relationship
 #####Create Schema
 ``` bash
-php artisan make:migration table_name --create = table_name
+php artisan make:migration table_name --create=table_name
 ```
 #####Testing
 ```bash

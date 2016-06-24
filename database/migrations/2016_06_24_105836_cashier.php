@@ -13,9 +13,13 @@ class Cashier extends Migration
     public function up()
     {
         // Create table Cashier
-        Schaema::create('cashier', function(Blueprint $table){
-            $table->foreign('emp_id')->references('employee');
-            $table->increments('cashier_id')->primary();
+        Schema::create('cashier', function(Blueprint $table){
+            $table->increments('cashier_id');
+            $table->integer('emp_id')->unsigned();
+            $table->foreign('emp_id')
+                ->references('id')->on('employee')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
