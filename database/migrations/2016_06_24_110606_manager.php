@@ -13,7 +13,7 @@ class Manager extends Migration
     public function up()
     {
         //
-        Schema::create('manager', function(Blueprint $table){
+        Schema::create('accountant', function(Blueprint $table){
             $table->integer('emp_id')->unsigned();
             $table->foreign('emp_id')->references('id')->on('employee')->onCreate('cascade')->onUpdate('cascade');
             $table->increments('manager_id');
