@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Modes;
+
 class Cashier extends Eloquent{
 
   protected $fillable = array('');

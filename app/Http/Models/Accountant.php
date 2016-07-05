@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Http\Modes;
+
+
 class Product extends Eloquent{
 
   protected $fillable = array('');

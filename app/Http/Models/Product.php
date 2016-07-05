@@ -15,14 +15,6 @@ class Product extends Eloquent{
   public function suppliers(){
     return $this->belongsTo('Supplier');
   }
-  // public function (){
-  //   return $this->belongsToMany('Customers',
-  //   'products_suppliers',
-  //   'products_warehouse',
-  //   'products_store',
-  //   'product_store_warehouse'
-  // );
-  // }
 
   public function store(){
     return $this->belogsTo('Store');
