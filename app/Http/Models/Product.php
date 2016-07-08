@@ -2,8 +2,9 @@
 
 namespace App\Http\Models;
 
+use Illuminate\Database\Eloquent\Model;
 
-class Product extends Eloquent{
+class Product extends Model{
 
   protected $fillable = array('');
 
@@ -20,11 +21,16 @@ class Product extends Eloquent{
     return $this->belogsTo('Store');
   }
 
-  public function store(){
+  public function warehouse(){
     return $this->belogsTo('Warehouse');
   }
 
   public function category(){
-    return $this->hasOne('Category');
+    return $this->hasOne('App\Http\Models\Categories');
   }
+
+  public function brand(){
+      return $this->hasOne('Brand');
+ }
+
 }

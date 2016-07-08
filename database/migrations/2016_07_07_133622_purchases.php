@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRelationshipStoreHasProducts extends Migration
+class Purchases extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,14 @@ class CreateRelationshipStoreHasProducts extends Migration
      */
     public function up()
     {
-        Schema::create('product_store', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('customer_id')->unsigned();
             $table->integer('product_id');
-            $table->integer('rack_id');
             $table->timestamps('date_time');
+            $table->integer('quantity');
+
+            $table->foreign('customer_id')->references('id')->on('categories')->onCreate('cascade')->onUpdate('cascade');
         });
     }
 
@@ -27,6 +30,6 @@ class CreateRelationshipStoreHasProducts extends Migration
      */
     public function down()
     {
-        Schema::drop('product_store');
+        Schema::drop('purchases');
     }
 }
