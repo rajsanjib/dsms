@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 use DB;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Product as mProduct;
@@ -21,20 +23,21 @@ class Purchase extends Controller
          return view('ds.purchase')->with('customerId',$id);
      }
 
-     public function add($request){
-         $customerId = $request->input('customerId');
-         $productId = $request->input('productId');
-         $quantity = $request->input('quantity');
-         $date = Carbon\Carbon::now(); // echo $mytime->toDateTimeString();
+     public function add(){
+         $customerId = Input::get('customerId');
+         $productId = Input::get('productId');
+         $quantity = Input::get('quantity');
+         $date = Carbon::now(); // echo $mytime->toDateTimeString();
 
-         DB::insert('insert into purchase (customer_id,
+         DB::insert('insert into purchases (
+                        customer_id,
                         product_id,
                         quantity,
-                        date_time)
-                    values (?, ?, ?,? )',
+                        created_at)
+                        values (?, ?, ?,? )',
                         [$customerId, $productId, $quantity, $date]
                     );
-        $this->view($customerId);
+        return redirect('/purchase');
      }
 
 }

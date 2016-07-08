@@ -40,5 +40,5 @@ Route::get('/purchase', function() {
 
 Route::get('/purchase/add/', function() {
     $purchase = new App\Http\Controllers\Purchase;
-    return $purchase->add(Input::all());
+    return $purchase->add();
 });

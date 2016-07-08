@@ -11,7 +11,7 @@
     <form action="{{url('purchase/add/')}}" method="get">
     <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">Customer Id</span>
-  <input type="text" class="form-control" value="{{$customerId}}" placeholder="{{$customerId}}" aria-describedby="basic-addon1 name="customerId"">
+  <input type="text" class="form-control" value="{{$customerId}}" placeholder="customerId" name="customerId">
 </div>
 
 <div class="input-group">
