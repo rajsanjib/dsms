@@ -1,30 +1,36 @@
-@extends('includes.master')
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
 
-@section('title','Purchase')
+  <div class="purchase-form row"> 
+    <div class="col-md-8 row">
+      <div class="col-md-4">  
+        <input type="text" class="form-control" placeholder="Token" >
+      </div>
 
-@section('navbar')
-    @include('includes.navbar')
-@endsection
+      <div class="col-md-4">  
+        <input type="text" class="form-control" placeholder="ID" >
+      </div>
 
-@section('content')
-    @parent
-    <form action="{{url('purchase/add/')}}" method="get">
-    <div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Customer Id</span>
-  <input type="text" class="form-control" value="{{$customerId}}" placeholder="customerId" name="customerId">
-</div>
-
-<div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Product Id</span>
-  <input type="text" class="form-control" placeholder="Product id" name="productId" aria-describedby="basic-addon2">
-</div>
-
-<div class="input-group">
-  <span class="input-group-addon">Quantity</span>
-  <input type="text" class="form-control" name="quantity">
-</div>
-
- <button type="submit" class="btn btn-primary">Add Purchase</button>
- </form>
- <a href={{url('/invoice/' . $customerId)}}><button class="btn btn-primary">Checkout</button></a>
-@endsection
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Quantity" >
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-success btn-lg"> Submit </button>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-warning btn-lg"> Check Out</button>
+    </div>
+  
+  </div>
+  
+</body>
+</html>
