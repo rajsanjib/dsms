@@ -19,13 +19,36 @@ Route::get('/', function () {
 });
 
 Route::get('/products', function () {
-    $products = new Products();
-    $allProducts = $products->all();
+    $allProducts = Products::all();
     return view('ds.allProducts')->with('products',$allProducts);
 });
 
 Route::get('/products/add', function(){
     return view('ds.addProducts');
+});
+
+Route::get('/products/delete/{id}', function($id){
+    Products::deleteProduct($id);
+
+    url('Location: products');
+});
+
+Route::get('/products/update/{id}', function($id){
+    $products = Products::one($id);
+    return view('ds.updateProduct')->with('products', $products);
+});
+
+Route::get('/products/updateTrue', function(Request $request){
+    $productArray = array(
+        'id' => $request->input('id'),
+        'product_name' => $request->input('product_name'),
+        'marked_price' => $request->input('marked_price'),
+        'selling_price' => $request->input('selling_price'),
+        'category_id' => $request->input('category_id'),
+        'brand_id' => $request->input('brand_id')
+    );
+    Products::updateProducts($productArray);
+    return redirect('/products');
 });
 
 Route::get('/products/add/send', function(Request $request){
@@ -37,6 +60,7 @@ Route::get('/products/add/send', function(Request $request){
         'category_id' => $request->input('category_id'),
         'brand_id' => $request->input('brand_id')
     );
+    
     Products::insertProducts($productArray);
     return view('ds.addProducts');
 });

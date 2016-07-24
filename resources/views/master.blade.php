@@ -1,10 +1,10 @@
 <html>
 <head>
     <title> @yield('title') </title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    @include('includes.header')
 </head>
 <body>
-        @yield('navbar')
+        @include('includes.navbar')
         <div class="wrapper">
             <div class="container">
                 @yield('content')

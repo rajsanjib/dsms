@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class Products extends Controller
 {
 
-  public function all(){
+  public static function all(){
       return DB::select("select
                     p.id,
                     p.product_name,
@@ -25,6 +25,10 @@ class Products extends Controller
                     INNER JOIN brands b
                     ON p.brand_id = b.id
       ");
+  }
+
+  public static function one($productId) {
+      return DB::select('SELECT * FROM products WHERE id = ?',[$productId]);
   }
 
   public static function insertProducts($productArray){
@@ -46,15 +50,8 @@ class Products extends Controller
     }
   }
 
-  public function updateProducts(Request $request){
-      $productArray = array(
-          'id' => $request->input('id'),
-          'product_name' => $request->input('product_name'),
-          'marked_price' => $request->input('marked_price'),
-          'selling_price' => $request->input('selling_price'),
-          'category_id' => $request->input('category_id'),
-          'brand_id' => $request->input('brand_id')
-      );
+  public static function updateProducts($productArray){
+
 
       $update = DB::update('UPDATE products SET
                     product_name = ?,
@@ -62,21 +59,21 @@ class Products extends Controller
                     selling_price = ?,
                     category_id = ?,
                     brand_id = ?
-                    WHERE id = ?',
+                    WHERE id = ?',[
                 $productArray['product_name'],
                 $productArray['marked_price'],
                 $productArray['selling_price'],
                 $productArray['category_id'],
                 $productArray['brand_id'],
                 $productArray['id']
-            );
+            ]);
   }
 
-  public function deleteProduct($productId){
-    return DB::delete('DELETE FROM products WHERE product_id = ?', $product_id);
+  public static function deleteProduct($productId){
+    return DB::delete('DELETE FROM products WHERE id = ?', [$productId]);
   }
 
-  public function getProduct($productId){
+  public static function getProduct($productId){
     return Products::get($productId);
   }
 }
