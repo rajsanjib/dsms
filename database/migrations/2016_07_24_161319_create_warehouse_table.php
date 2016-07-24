@@ -17,7 +17,7 @@ class CreateWarehouseTable extends Migration
             $table->mediumInteger('max_capacity');
             $table->int('product')->unsigned();
             $table->foreign_key('product')->references('id')->on('products')
-                    ->onCreate('cascade')->onUpdate('cascade');
+                    ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Purchases extends Migration
+class CreateTableSales extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,14 @@ class Purchases extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::table('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->timestamps('date_time');
             $table->integer('quantity');
             $table->float('total_price');
+
+            $table->foreign_key('product_id')->references('id')->on('products')->onUpdate('cascade')->onCreate('cascade');
         });
     }
 
@@ -28,6 +30,8 @@ class Purchases extends Migration
      */
     public function down()
     {
-        Schema::drop('purchases');
+        Schema::table('sales', function (Blueprint $table) {
+            //
+        });
     }
 }

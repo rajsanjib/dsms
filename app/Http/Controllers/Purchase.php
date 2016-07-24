@@ -14,8 +14,9 @@ class Purchase extends Controller
      public function index(){
          $custId = DB::select('select * from customers limit 1');
          foreach ($custId as $id) {
-             $cId = $id->id;
+             $cId = $id->customer_id;
          }
+         print $cId;
          return Purchase::viewPage($cId + 1);
      }
 
@@ -28,6 +29,8 @@ class Purchase extends Controller
          $productId = Input::get('productId');
          $quantity = Input::get('quantity');
          $date = Carbon::now(); // echo $mytime->toDateTimeString();
+
+         Customers::add($id);
 
          DB::insert('insert into purchases (
                         customer_id,

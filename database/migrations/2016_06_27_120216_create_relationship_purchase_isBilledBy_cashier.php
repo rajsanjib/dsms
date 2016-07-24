@@ -12,12 +12,21 @@ class CreateRelationshipPurchaseIsBilledByCashier extends Migration
      */
     public function up()
     {
-        Schema::create('cashier_customer_product', function (Blueprint $table) {
+        Schema::create('invoice', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('purchase_id');
             $table->integer('cashier_id');
             $table->date('date');
-            $table->float('total_price');
+            $table->foreign_key('purchase_id')
+            ->references('id')
+            ->on('sales')
+            ->onUpdate('cascade')
+            ->onCreate('cascade');
+            $table->foreign_key('cashier_id')
+            ->references('id')
+            ->on('employee')
+            ->onUpdate('cascade')
+            ->onCreate('cascade');
         });
     }
 

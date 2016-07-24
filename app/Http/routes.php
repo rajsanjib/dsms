@@ -33,12 +33,27 @@ Route::get('/store', function (){
     return view('store.show')->with('store',$store);
 });
 
+/*
+*
+*/
 Route::get('/purchase', function() {
     $purchase = new App\Http\Controllers\Purchase;
     return $purchase->index();
 });
 
+/**
+* Add products to purchase list
+*/
 Route::get('/purchase/add/', function() {
     $purchase = new App\Http\Controllers\Purchase;
     return $purchase->add();
+});
+
+/*
+* Checkout
+* Take to invoice Page
+*/
+Route::get('/invoice/{custId}', function($custId) {
+    $purchase = new App\Http\Controllers\Invoice;
+    return $purchase->index($custId);
 });

@@ -24,7 +24,7 @@
   <input type="text" class="form-control" name="quantity">
 </div>
 
- <button type="submit" class="btn btn-primary">Submit</button>
-
-  </form>
+ <button type="submit" class="btn btn-primary">Add Purchase</button>
+ </form>
+ <a href={{url('/invoice/' . $customerId)}}><button class="btn btn-primary">Checkout</button></a>
 @endsection
