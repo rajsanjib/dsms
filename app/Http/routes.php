@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Products;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,6 +13,7 @@ use App\Http\Controllers\Products;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,6 +23,24 @@ Route::get('/products', function () {
     $allProducts = $products->all();
     return view('ds.allProducts')->with('products',$allProducts);
 });
+
+Route::get('/products/add', function(){
+    return view('ds.addProducts');
+});
+
+Route::get('/products/add/send', function(Request $request){
+    $productArray = array(
+        'id' => $request->input('id'),
+        'product_name' => $request->input('product_name'),
+        'marked_price' => $request->input('marked_price'),
+        'selling_price' => $request->input('selling_price'),
+        'category_id' => $request->input('category_id'),
+        'brand_id' => $request->input('brand_id')
+    );
+    Products::insertProducts($productArray);
+    return view('ds.addProducts');
+});
+
 
 Route::get('/products/{id}', function ($id) {
     $product = App\Http\Controllers\Products::find($id);

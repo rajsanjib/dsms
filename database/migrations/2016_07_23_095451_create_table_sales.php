@@ -12,14 +12,14 @@ class CreateTableSales extends Migration
      */
     public function up()
     {
-        Schema::table('sales', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->timestamps('date_time');
             $table->integer('quantity');
             $table->float('total_price');
 
-            $table->foreign_key('product_id')->references('id')->on('products')->onUpdate('cascade')->onCreate('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onCreate('cascade');
         });
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRelationshipPurchaseIsBilled extends Migration
+class CreateRelationshipPurchaseIsBilledByCashier extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,17 @@ class CreateRelationshipPurchaseIsBilled extends Migration
     {
         Schema::create('invoice', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cashier_id');
-            $table->timestamps('date_time');
-            $table->integer('sales_id')
-
-            $table->foreign_key('sales_id')
+            $table->integer('purchase_id')->unsigned();
+            $table->integer('cashier_id')->unsigned();
+            $table->date('date');
+            $table->foreign('purchase_id')
             ->references('id')
-            ->on('sale')
+            ->on('sales')
+            ->onUpdate('cascade')
+            ->onCreate('cascade');
+            $table->foreign('cashier_id')
+            ->references('id')
+            ->on('employee')
             ->onUpdate('cascade')
             ->onCreate('cascade');
         });
@@ -33,6 +37,6 @@ class CreateRelationshipPurchaseIsBilled extends Migration
      */
     public function down()
     {
-        Schema::drop('cashier_purchase');
+        Schema::drop('cashier_customer_product');
     }
 }

@@ -16,7 +16,9 @@ class StoreTableSeeder extends Seeder
 
         for($i = 0; $i < $limit; $i++){
             DB::table('store')->insert([
-                ('prod')
+                'product_id' => $faker->numberBetween($min = 1, $max = 100),
+                'capacity' => 50,
+                'available' => 50,
             ]);
         }
     }

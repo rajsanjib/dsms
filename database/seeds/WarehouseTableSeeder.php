@@ -16,7 +16,10 @@ class WarehouseTableSeeder extends Seeder
 
         for($i = 0; $i < $limit; $i++){
             DB::table('store')->insert([
-                ('product_id') = $faker->randomNumber(int 1,int 200);
+                'product_id' => $faker->numberBetween($min = 1, $max = 100),
+                'capacity' => 50,
+                'available' => 50,
             ]);
          }
+     }
 }

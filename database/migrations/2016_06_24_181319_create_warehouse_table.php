@@ -15,9 +15,10 @@ class CreateWarehouseTable extends Migration
         Schema::create('warehouse', function (Blueprint $table) {
             $table->increments('rack_id');
             $table->mediumInteger('max_capacity');
-            $table->int('product')->unsigned();
-            $table->foreign_key('product')->references('id')->on('products')
-                    ->onDelete('cascade')->onUpdate('cascade');
+            $table->mediumInteger('available');
+            $table->integer('product')->unsigned();
+            $table->foreign('product')->references('id')->on('products')
+                    ->onCreate('cascade')->onUpdate('cascade');
         });
     }
 

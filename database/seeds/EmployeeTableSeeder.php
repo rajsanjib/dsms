@@ -11,15 +11,21 @@ class EmployeeTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Faker::Factory();
+        $faker = Faker\Factory::create();
         $limit = 10;
 
         for($i = 0; $i < $limit; $i++){
             DB::table('employee')->insert([
-                ('first_name') = $faker->name,
-                ('last_name') = $faker->last_name,
-                ('date_joined') = $faker->date,
-                ('email') => $faker->email;
+                ('first_name') => $faker->firstNameMale,
+                ('last_name') => $faker->lastName,
+                ('date_joined') => $faker->date($format = 'Y-m-d'),
+                ('email') => $faker->email,
+                ('contact_number') => $faker->phoneNumber,
+                ('address') => $faker->streetAddress,
+                ('dob') => $faker->date($format = 'Y-m-d'),
+                ('sex') => 'M',
+                ('position') => $faker->title,
+                ('salary') => $faker->numberBetween($min = 10000, $max = 50000)
             ]);
          }
     }

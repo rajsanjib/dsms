@@ -12,7 +12,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 10;
+        $limit = 50;
 
         for($i=0; $i< $limit; $i++){
             DB::table('categories')->insert([

@@ -19,12 +19,12 @@ class CreateRelationshipAccountPaysSupplies extends Migration
             $table->timestamps('date_time');
             $table->float('total_amount');
             $table->float('paid_amount');
-            $table->foreign_key('supply_id')
+            $table->foreign('supply_id')
             ->references('id')
             ->on('supply')
             ->onUpdate('cascade')
             ->onCreate('cascade');
-            $table->foreign_key('accountant_id')
+            $table->foreign('accountant_id')
             ->references('id')
             ->on('employee')
             ->onUpdate('cascade')
