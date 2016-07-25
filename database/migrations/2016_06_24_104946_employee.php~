@@ -23,7 +23,7 @@ class Employee extends Migration
             $emp->string('contact_number',15);
             $emp->string('address')->nullable();
             $emp->date('dob')->nullable();
-            $emp->string('gender');
+            $emp->string('sex');
             $emp->string('position');
             $emp->string('salary');
         });
