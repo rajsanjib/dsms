@@ -14,6 +14,7 @@ class CreateTableSales extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('token')->unique();
             $table->integer('product_id')->unsigned();
             $table->timestamps('date_time');
             $table->integer('quantity');

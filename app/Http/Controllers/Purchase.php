@@ -12,35 +12,45 @@ class Purchase extends Controller
 {
 
      public function index(){
-         $custId = DB::select('select * from customers limit 1');
-         foreach ($custId as $id) {
-             $cId = $id->customer_id;
-         }
-         print $cId;
          return Purchase::viewPage($cId + 1);
      }
 
-     public function viewPage($id){
-         return view('ds.purchase')->with('customerId',$id);
+     public static function getNextToken(){
+         return DB::select('SELECT max(token) as token from sales');
      }
 
-     public function add(){
-         $customerId = Input::get('customerId');
-         $productId = Input::get('productId');
+     public static function add(){
+         $productId = Input::get('product_id');
          $quantity = Input::get('quantity');
-         $date = Carbon::now(); // echo $mytime->toDateTimeString();
+         $date = date('Y-m-d');
+         $token = Input::get('token');
 
-         Customers::add($id);
+         $row = DB::select('select selling_price from products where id = ?', [$productId]);
+         foreach($row as $p){
+             $selling_price = $p->selling_price;
+         }
 
-         DB::insert('insert into purchases (
-                        customer_id,
+         $totalPrice = $quantity * $selling_price;
+
+         DB::insert('insert into sales (
                         product_id,
                         quantity,
-                        created_at)
-                        values (?, ?, ?,? )',
-                        [$customerId, $productId, $quantity, $date]
+                        created_at,
+                        total_price,
+                        token)
+                        values (?,?,?,?,? )',
+                        [$productId, $quantity, $date, $totalPrice, $token]
                     );
         return redirect('/purchase');
+     }
+
+     public static function getInvoice($token){
+         return DB::select('Select * from
+                            sales as s
+                            inner join products as p
+                            on s.product_id = p.id
+                            where token = ?
+                            ', [$token]);
      }
 
 }

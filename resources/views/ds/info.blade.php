@@ -1,4 +1,4 @@
-extends('master')
+@extends('master')
 
 @section('title','All Products')
 

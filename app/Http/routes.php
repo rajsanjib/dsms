@@ -60,14 +60,14 @@ Route::get('/products/add/send', function(Request $request){
         'category_id' => $request->input('category_id'),
         'brand_id' => $request->input('brand_id')
     );
-    
+
     Products::insertProducts($productArray);
     return view('ds.addProducts');
 });
 
 
 Route::get('/products/{id}', function ($id) {
-    $product = App\Http\Controllers\Products::find($id);
+    $product = App\Http\Controllers\Products::all($id);
     return view('product.product')->with('product',$product);
 });
 
@@ -80,8 +80,13 @@ Route::get('/store', function (){
 *
 */
 Route::get('/purchase', function() {
-    $purchase = new App\Http\Controllers\Purchase;
-    return $purchase->index();
+    $purchase = App\Http\Controllers\Purchase::getNextToken();
+    return view('ds.purchase')->with('purchase',$purchase);
+});
+
+Route::get('/purchase/add', function() {
+    $purchase = App\Http\Controllers\Purchase::add();
+    return view('ds.purchase')->with('purchase',$purchase);
 });
 
 /**
@@ -91,6 +96,17 @@ Route::get('/purchase/add/', function() {
     $purchase = new App\Http\Controllers\Purchase;
     return $purchase->add();
 });
+
+Route::get('/checkout/{token}', function($token){
+    $purchase = App\Http\Controllers\Purchase::getInvoice($token);
+    return view('ds.invoice')->with('purchase', $purchase);
+
+});
+
+Route::get('/employee', function(){
+    $employee = App\Http\Controllers\Employee::getEmployee();
+    return view('ds.allemployee')->with('employee',$employee);
+})
 
 /*
 * Checkout

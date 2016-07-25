@@ -52,7 +52,6 @@ class Products extends Controller
 
   public static function updateProducts($productArray){
 
-
       $update = DB::update('UPDATE products SET
                     product_name = ?,
                     marked_price = ?,

@@ -1,27 +1,27 @@
+@extends('master')
+
+@section('title','Add Product')
+
+@section('content')
+
+    @parent
 
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
         <div class="invoice-title">
-          <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+          <h2>Invoice</h2>
         </div>
         <hr>
         <div class="row">
-          <div class="col-xs-6">
-            <address>
-            <strong>Billed To:</strong><br>
-              John Smith<br>
-
-            </address>
-          </div>
 
         </div>
         <div class="row">
 
           <div class="col-xs-6 text-right">
             <address>
-              <strong>Order Date:</strong><br>
-              March 7, 2014<br><br>
+              <strong>Billing Date:</strong><br>
+              {{date('Y-m-d')}}<br><br>
             </address>
           </div>
         </div>
@@ -46,27 +46,24 @@
                                 </tr>
                 </thead>
                 <tbody>
-                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                  @foreach ($purchase as $item)
                   <tr>
-                    <td>BS-200</td>
-                    <td class="text-center">$10.99</td>
-                    <td class="text-center">1</td>
-                    <td class="text-right">$10.99</td>
+                    <td>{{$item->id}}</td>
+                    <td class="text-center">{{$item->selling_price}}</td>
+                    <td class="text-center">{{$item->quantity}}</td>
+                    <td class="text-right">{{$item->total_price}}</td>
+                    <?php $grandTotal = 0;
+                            foreach ($purchase as $key) {
+                                $grandTotal = $grandTotal + $key->total_price;
+                            } ?>
                   </tr>
-
+              @endforeach
                   </tr>
-                  <tr>
-                    <td class="thick-line"></td>
-                    <td class="thick-line"></td>
-                    <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                    <td class="thick-line text-right">$670.99</td>
-                  </tr>
-
                   <tr>
                     <td class="no-line"></td>
                     <td class="no-line"></td>
                     <td class="no-line text-center"><strong>Total</strong></td>
-                    <td class="no-line text-right">$685.99</td>
+                    <td class="no-line text-right">{{$grandTotal}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -75,3 +72,4 @@
         </div>
       </div>
     </div>
+@endsection

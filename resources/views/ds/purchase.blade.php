@@ -1,30 +1,28 @@
-@extends('includes.master')
+@extends('master')
 
 @section('title','Purchase')
 
-@section('navbar')
-    @include('includes.navbar')
-@endsection
-
 @section('content')
     @parent
-    <form action="{{url('purchase/add/')}}" method="get">
-    <div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Customer Id</span>
-  <input type="text" class="form-control" value="{{$customerId}}" placeholder="customerId" name="customerId">
-</div>
+    <div class="container">
+      <div class="purchase-form row">
+        <div class="col-md-8 row">
+                  <form role="form" action = "/purchase/add" method="get">
+                      @foreach ($purchase as $lastToken)
+                    <input type="text" class="form-control" placeholder="Token" name="token" value="{{ $lastToken->token }}">
+                    @endforeach
 
-<div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Product Id</span>
-  <input type="text" class="form-control" placeholder="Product id" name="productId" aria-describedby="basic-addon2">
-</div>
+                      <label>Product Id</label>
+                    <input type="text" class="form-control" placeholder="ID" name="product_id" value="">
 
-<div class="input-group">
-  <span class="input-group-addon">Quantity</span>
-  <input type="text" class="form-control" name="quantity">
-</div>
+                    <input type="text" class="form-control" placeholder="Quantity" name=quantity >
 
- <button type="submit" class="btn btn-primary">Add Purchase</button>
- </form>
- <a href={{url('/invoice/' . $customerId)}}><button class="btn btn-primary">Checkout</button></a>
-@endsection
+                    <button class="btn btn-success btn-lg"> Submit </button>
+        </form>
+        <div class="col-md-2">
+          <a href="{{ url('checkout', $lastToken->token ) }}"<button class="btn btn-warning btn-lg"> Check Out</button></a>
+        </div>
+
+      </div>
+  </div>
+  @endsection

@@ -18,12 +18,12 @@ class Employee extends Migration
             $emp->string('first_name');
             $emp->string('middle_name');
             $emp->string('last_name');
+            $emp->string('sex');
             $emp->date('date_joined');
             $emp->string('email')->nullable();
             $emp->string('contact_number',15);
             $emp->string('address')->nullable();
             $emp->date('dob')->nullable();
-            $emp->string('sex');
             $emp->string('position');
             $emp->string('salary');
         });
