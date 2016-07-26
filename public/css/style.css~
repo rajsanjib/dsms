@@ -25,6 +25,7 @@ th{
   text-align: left;
   font-weight: 500;
   font-size: 12px;
+  color: #fff;
   text-transform: uppercase;
 }
 td{
@@ -33,7 +34,7 @@ td{
   vertical-align:middle;
   font-weight: 300;
   font-size: 12px;
-  color: black;
+  color: #fff;
   border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 
@@ -55,13 +56,13 @@ section{
 /* for custom scrollbar for webkit browser*/
 
 ::-webkit-scrollbar {
-    width: 6px;
-}
+    width: 8px;
+} 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
+    -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.3); 
+} 
 ::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.5); 
 }
 
 
@@ -98,6 +99,7 @@ form {
  /* background: #f4f7f8;*/
  border: 1px solid #E4E6E4;
   border-radius: 8px;
+  color: #fff;
 }
 
 form > h1 {
@@ -125,7 +127,7 @@ select {
   padding: 15px;
   width: 100%;
   background-color: #e8eeef;
-
+  color:#787A7A; 
   box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
   margin-bottom: 30px;
   border: 1px solid #E4E6E4;
@@ -141,7 +143,7 @@ select {
   padding: 6px;
   height: 32px;
   border-radius: 2px;
-
+  
 }
 
 button.submitbtn {
