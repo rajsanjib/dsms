@@ -165,7 +165,8 @@ Route::get('/store/productAdded', function(){
 });
 
 Route::get('/supply/pay/{id}', function($id){
-    return view('ds.paysupply')->with('id', $id);
+    $supply = App\Http\Controllers\Supply::getSupply($id);
+    return view('ds.paysupply')->with('supply', $supply);
 });
 
 Route::get('/supply/paid', function(){

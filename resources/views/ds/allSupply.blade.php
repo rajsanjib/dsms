@@ -22,7 +22,7 @@
           @foreach ($supplies as $supply)
         <tr>
 
-          <td>{{ $supply->id }}</td>
+          <td>{{ $supply->sid }}</td>
           <td>{{ $supply->name }}</td>
           <td>{{ $supply->product_id }}</td>
           <td>{{ $supply->product_name }}</td>
@@ -32,7 +32,7 @@
           <td> @if ($supply->paid == true)
               Paid
               @else
-              <a href="{{ url('/supply/pay/'. $supply->id)}}"> Pay </a>
+              <a href="{{ url('/supply/pay/'. $supply->sid)}}"> Pay </a>
           @endif
           </th>
         </tr>
