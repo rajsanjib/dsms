@@ -41,6 +41,7 @@ class Purchase extends Controller
                         values (?,?,?,?,? )',
                         [$productId, $quantity, $date, $totalPrice, $token]
                     );
+        Store::decreaseProduct($productId, $quantity);
         return redirect('/purchase');
      }
 

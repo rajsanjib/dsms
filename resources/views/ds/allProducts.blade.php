@@ -15,7 +15,6 @@
           <th>Category</th>
           <th>Brand</th>
           <th>Update </th>
-          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -28,11 +27,8 @@
           <td>{{ $product->category_name }}</td>
           <td>{{ $product->brand_name }}</td>
           <td><a href="{{ url('products/update', $product->id) }}"> Update</a></td>
-          <td><a href="{{ url('products/delete', $product->id) }}"> Delete</a></td>
         </tr>
         @endforeach
       </tbody>
     </table>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src="js/index.js"></script>
 @endsection

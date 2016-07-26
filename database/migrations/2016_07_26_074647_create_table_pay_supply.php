@@ -13,7 +13,7 @@ class CreateRelationshipAccountPaysSupplies extends Migration
     public function up()
     {
         Schema::create('pay_supply', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('pay_supply_id');
             $table->integer('supply_id')->unsigned();
             $table->integer('accountant_id')->unsigned();
             $table->timestamps('date_time');

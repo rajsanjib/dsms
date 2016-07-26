@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    return view('ds.login');
+});
+
+Route::get('/login/validate', function () {
+    return App\Http\Controllers\Login::checkLogin();
+});
+
 Route::get('/products', function () {
     $allProducts = Products::all();
     return view('ds.allProducts')->with('products',$allProducts);
@@ -29,7 +37,6 @@ Route::get('/products/add', function(){
 
 Route::get('/products/delete/{id}', function($id){
     Products::deleteProduct($id);
-
     url('Location: products');
 });
 
@@ -68,13 +75,9 @@ Route::get('/products/add/send', function(Request $request){
 
 Route::get('/products/{id}', function ($id) {
     $product = App\Http\Controllers\Products::all($id);
-    return view('product.product')->with('product',$product);
+    return view('ds.product')->with('product',$product);
 });
 
-Route::get('/store', function (){
-    $store = App\Http\Controllers\Store::all();
-    return view('store.show')->with('store',$store);
-});
 
 /*
 *
@@ -85,16 +88,8 @@ Route::get('/purchase', function() {
 });
 
 Route::get('/purchase/add', function() {
-    $purchase = App\Http\Controllers\Purchase::add();
-    return view('ds.purchase')->with('purchase',$purchase);
-});
-
-/**
-* Add products to purchase list
-*/
-Route::get('/purchase/add/', function() {
-    $purchase = new App\Http\Controllers\Purchase;
-    return $purchase->add();
+    App\Http\Controllers\Purchase::add();
+    return redirect(url('/purchase'));
 });
 
 Route::get('/checkout/{token}', function($token){
@@ -104,15 +99,86 @@ Route::get('/checkout/{token}', function($token){
 });
 
 Route::get('/employee', function(){
-    $employee = App\Http\Controllers\Employee::getEmployee();
+    $employee = App\Http\Controllers\Employee::all();
     return view('ds.allemployee')->with('employee',$employee);
-})
+});
 
-/*
-* Checkout
-* Take to invoice Page
-*/
-Route::get('/invoice/{custId}', function($custId) {
-    $purchase = new App\Http\Controllers\Invoice;
-    return $purchase->index($custId);
+Route::get('/employee/add', function(){
+    return view('ds.addEmployee');
+});
+
+Route::get('/employee/add/true', function(){
+    App\Http\Controllers\Employee::addEmployee();
+    return view('ds.addEmployee');
+});
+
+Route::get('/employee/edit/{id}', function($id){
+    $employee = App\Http\Controllers\Employee::getEmployee($id);
+    return view('ds.allemployee')->with('employee',$employee);
+});
+
+Route::get('/employee/pay/{id}', function($id){
+    $employee = App\Http\Controllers\Employee::getEmployee($id);
+    return view('ds.pay_employee')->with('employee',$employee);
+});
+
+Route::get('/employee/paid', function(){
+    App\Http\Controllers\Employee::payEmployee();
+    return redirect(url('/employee'));
+});
+
+Route::get('/supply', function(){
+    $supplies = App\Http\Controllers\Supply::all();
+    return view('ds.allSupply')->with('supplies',$supplies);
+});
+
+Route::get('/supply/add', function(){
+    return view('ds.addSupply');
+});
+
+Route::get('/supply/add/send', function(){
+    $supply = App\Http\Controllers\Supply::addSupply();
+    return view('ds.addSupply');
+});
+
+Route::get('/suppliers', function(){
+    $suppliers = App\Http\Controllers\Supply::allSuppliers();
+    return view('ds.allSuppliers')->with('suppliers',$suppliers);
+});
+
+Route::get('/store', function(){
+    $stores = App\Http\Controllers\Store::all();
+    return view('ds.allStore')->with('stores',$stores);
+});
+
+Route::get('/store/addProducts/{id}', function($id){
+    $info = App\Http\Controllers\Store::getStore($id);
+    return view('ds.addProductsInStore')->with('info', $info);
+});
+
+Route::get('/store/productAdded', function(){
+    $addition = App\Http\Controllers\Store::addProductsToStore();
+    if($addition){
+        return redirect(url('/store'));
+    } else
+    die("Product could not be fetched");
+});
+
+Route::get('/supply/pay/{id}', function($id){
+    return view('ds.paysupply')->with('id', $id);
+});
+
+Route::get('/supply/paid', function(){
+    App\Http\Controllers\Supply::paySupply();
+    return redirect(url('supply'));
+});
+
+Route::get('/warehouse', function(){
+    $stores = App\Http\Controllers\Warehouse::all();
+    return view('ds.warehouse')->with('stores',$stores);
+});
+
+Route::get('salaryrecord', function(){
+    $employee = App\Http\Controllers\Employee::getSalaryRecord();
+    return view('ds.salaryRecord')->with('employee',$employee);
 });

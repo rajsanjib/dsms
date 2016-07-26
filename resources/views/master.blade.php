@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{asset('css/bg.css')}}" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('css/navbar.css')}}" />
+    <script src="{{asset('js/bootstrap.min.js')}}" ></script>
     @include('includes.header')
 </head>
 <body>
@@ -15,7 +16,7 @@
                 @yield('content')
             </div>
         </div>
-    @yield('footer')
+    @yield('includes.footer')
 </body>
 
 </html>

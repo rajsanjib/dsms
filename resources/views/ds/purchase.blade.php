@@ -10,7 +10,6 @@
                   <form role="form" action = "/purchase/add" method="get">
                       @foreach ($purchase as $lastToken)
                     <input type="text" class="form-control" placeholder="Token" name="token" value="{{ $lastToken->token }}">
-                    @endforeach
 
                       <label>Product Id</label>
                     <input type="text" class="form-control" placeholder="ID" name="product_id" value="">
@@ -22,6 +21,7 @@
         <div class="col-md-2">
           <a href="{{ url('checkout', $lastToken->token ) }}"<button class="btn btn-warning btn-lg"> Check Out</button></a>
         </div>
+        @endforeach
 
       </div>
   </div>

@@ -16,7 +16,7 @@ class CreateRelationshipAccountPaysEmployee extends Migration
           $table->increments('id');
           $table->integer('employee_id')->unsigned();
           $table->timestamps('date_time');
-          $table->string('for_month');
+          $table->string('month');
           $table->float('total_amount');
           $table->float('paid_amount');
 

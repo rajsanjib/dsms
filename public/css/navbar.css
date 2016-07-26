@@ -1,8 +1,11 @@
+nav{
+    margin-left: 40px;
+    background-color: #333;
+}
 ul {
     list-style-type: none;
-    margin: 0;
+    margin: 20, 40;
     padding: 0;
-    overflow: hidden;
     background-color: #333;
 }
 
@@ -19,7 +22,7 @@ li a, .dropbtn {
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: white;
 }
 
 li.dropdown {
@@ -46,36 +49,4 @@ li.dropdown {
 
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-.invoice-title h2, .invoice-title h3 {
-    display: inline-block;
-}
-
-.table > tbody > tr > .no-line {
-    border-top: none;
-}
-
-.table > thead > tr > .no-line {
-    border-bottom: none;
-}
-
-.table > tbody > tr > .thick-line {
-    border-top: 2px solid;
-}
-
-.invoice-title h2, .invoice-title h3 {
-    display: inline-block;
-}
-
-.table > tbody > tr > .no-line {
-    border-top: none;
-}
-
-.table > thead > tr > .no-line {
-    border-bottom: none;
-}
-
-.table > tbody > tr > .thick-line {
-    border-top: 2px solid;
 }

@@ -14,11 +14,11 @@ class StoreTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         $limit = 100;
 
-        for($i = 0; $i < $limit; $i++){
+        for($i = 1; $i < $limit; $i++){
             DB::table('store')->insert([
-                'product_id' => $faker->numberBetween($min = 1, $max = 100),
+                'product_id' => $i,
                 'capacity' => 50,
-                'available' => 50,
+                'available' => 0,
             ]);
         }
     }

@@ -12,11 +12,11 @@ class WarehouseTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $limit = 200;
+        $limit = 100;
 
-        for($i = 0; $i < $limit; $i++){
-            DB::table('store')->insert([
-                'product_id' => $faker->numberBetween($min = 1, $max = 100),
+        for($i = 1; $i < $limit; $i++){
+            DB::table('warehouse')->insert([
+                'product' => $i,
                 'capacity' => 50,
                 'available' => 50,
             ]);
